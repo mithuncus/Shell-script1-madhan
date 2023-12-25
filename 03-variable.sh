@@ -8,3 +8,6 @@ echo "calander is :${CALANDER}"
 
 HOSTNAME=$(hostname)
 echo "hostname is :${HOSTNAME}"
+
+DISKSPACE=$(df -h)
+echo "diskspace is :${DISKSPACE}"
