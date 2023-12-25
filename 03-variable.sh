@@ -12,4 +12,4 @@ echo "hostname is :${HOSTNAME}"
 DISKSPACE=$(df -h)
 echo "diskspace is :${DISKSPACE}"
 
-echo "script start execution :{DATE}"
+echo "script start execution :${DATE}"
