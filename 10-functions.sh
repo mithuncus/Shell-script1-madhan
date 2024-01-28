@@ -12,7 +12,7 @@ VALIDATE(){
     
 }
 
-if [ $ID -ne 0]
+if [ $ID -ne 0 ]
 then
     echo "ERROR: please run this sript with root access"
     exit 1 #you can give otherthan 0
