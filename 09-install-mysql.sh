@@ -17,3 +17,13 @@ else
     echo "installinf mysql is success"
 
 fi
+
+yum install git -y
+
+if [ $? -ne 0 ]
+then
+    echo "ERROR: please installing git failed"
+    exit 1
+else
+    echo "installation of git is success"
+fi
