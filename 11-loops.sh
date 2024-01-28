@@ -4,7 +4,7 @@ TIMESTAMP=$(date +%F-%H-%M-%S)
 
 echo " scriptname $0 "
 
-LOGFILE=" /tmp/$0-$TIMESTAMP.log "
+LOGFILE="/tmp/$0-$TIMESTAMP.log"
 
 
 VALIDATE(){
