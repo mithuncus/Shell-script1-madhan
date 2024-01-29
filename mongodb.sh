@@ -10,26 +10,23 @@ echo -e " $G scriptname $0 "
 TIMESTAMP=$(date +%F-%H-%M-%S)
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
 echo " script started executing $TIMESTAMP" &>> $LOGFILE
-
 VALIDATE(){
-    if [$1 -ne 0]
+    if [ $1 -ne 0 ]
     then
         echo -e "$2 ... $R FAILED $N"
         exit 1
-    else    
-        echo -e "$1 ... $G Success $N"
-
+    else
+        echo -e "$2 ... $G SUCCESS $N"
     fi
 }
 
 if [ $ID -ne 0 ]
 then
-    echo -e " $R ERROR: Please run this as aroot user $N"
-    exit 1
+    echo -e "$R ERROR:: Please run this script with root access $N"
+    exit 1 # you can give other than 0
 else
-    echo -e " $G you are root user $N"
-
-fi
+    echo "You are root user"
+fi # fi means reverse of if, indicating condition end
 
 cp mongo.repo /etc/yum.repos.d/ &>> $LOGFILE
 VALIDATE $? "copied the mongo repo"
@@ -44,6 +41,10 @@ systemctl start mongod &>> $LOGFILE
 VALIDATE $? "starting mongo service"
 
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf &>> $LOGFILE
+VALIDATE $? "remote access allowing "
+
+systemctl start mongod &>> $LOGFILE
+VALIDATE $? "starting mongo service"
 
 
 
