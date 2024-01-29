@@ -4,6 +4,12 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+VALIDATE(){
+    if [$1 -ne 0 ]
+    then 
+    echo -e "$2 ...$R Failed $N"
+    
+}
 ID=$(id -u)
 if [ $ID -ne 0 ]
 then
@@ -13,4 +19,12 @@ else
     echo -e  "$G you are root user $N"
 fi
 
-echo -e " $Y all arguments passed $G $@ $N"
+#echo -e " $Y all arguments passed $G $@ $N"
+
+for package in $@ 
+do
+    yum list installed $package
+    if [$? -ne 0]
+    then
+        yum install $package -y
+done
